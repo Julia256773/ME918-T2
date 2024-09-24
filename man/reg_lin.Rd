@@ -22,3 +22,9 @@ A função tem como objetivo aplicar o cálculo da regressão linear simples a u
 \details{
 É necessário que tanto a variável resposta quanto as variáveis preditoras sejam numéricas e tenham o mesmo tamanho
 }
+\examples{
+reg_lin(df, "y", c("x1", "x2", "x3"))
+reg_lin(df, "y", c("x1", "x3"))
+reg_lin(df, "y", c("x2"))
+
+}

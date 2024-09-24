@@ -13,13 +13,20 @@
 #'
 #' @return Retorna uma lista com 3 objetos: um dataframe de nome "coeficientes" com os valores dos betas calculados, um vetor "preditos" com os valores preditos pelo modelo e um vetor "residuos" com os erros dos valores preditos.
 #'
-#'@importFrom magrittr `%>%`
+#' @examples
+#' reg_lin(df, "y", c("x1", "x2", "x3"))
+#' reg_lin(df, "y", c("x1", "x3"))
+#' reg_lin(df, "y", c("x2"))
+#'
+#' @importFrom magrittr `%>%`
 #'
 #' @export
 #'
 
 
 reg_lin = function(dados, Y, Xs){
+
+  if (!is.character(Y) || !is.character(Xs[1])) { stop("Erro: A resposta ou preditoras não estão no formato de strings") }
 
   # DATAFRAME COM COEFICIENTES
   #calculo dos betas
@@ -30,6 +37,7 @@ reg_lin = function(dados, Y, Xs){
   i=i+1
   }
   matrix_X = as.matrix(matrix_X)
+  for(i in 2:ncol(matrix_X)){ if(all(matrix_X[1,i] == matrix_X[,i])){ stop("Uma das preditoras é constante.") }}
   matrix_Y = as.matrix(dados[[Y]])
   coeficientes = solve(t(matrix_X)%*%matrix_X)  %*%t(matrix_X) %*% matrix_Y
   #criando dataframe
