@@ -15,5 +15,5 @@ test_that("preditora de constantes", {
   x2 = c(4,4,4,4,4,4,4,4,4)
   y = c(1,2,5,3,6,4,7,9,6)
   data = data.frame(y, x1, x2)
-  expect_err or(reg_lin(data, "y", c("x1","x2")))
+  expect_error(reg_lin(data, "y", c("x1","x2")))
 })

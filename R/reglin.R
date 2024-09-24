@@ -18,8 +18,6 @@
 #' reg_lin(df, "y", c("x1", "x3"))
 #' reg_lin(df, "y", c("x2"))
 #'
-#' @importFrom magrittr `%>%`
-#'
 #' @export
 #'
 
@@ -43,7 +41,7 @@ reg_lin = function(dados, Y, Xs){
   #criando dataframe
   betas = paste0("beta ", 0:(ncol(matrix_X)-1))
   nomes = append(c("intercepto"), Xs)
-  coeficientes = coeficientes %>% as.vector()
+  coeficientes = as.vector(coeficientes)
   dataframe = data.frame(betas, nomes, coeficientes)
 
 
