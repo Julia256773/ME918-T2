@@ -36,6 +36,8 @@ reg_lin = function(dados, Y, Xs){
   }
   matrix_X = as.matrix(matrix_X)
   for(i in 2:ncol(matrix_X)){ if(all(matrix_X[1,i] == matrix_X[,i])){ stop("Uma das preditoras é constante.") }}
+  if(ncol(matrix_X) < nrow(matrix_X)){posto = ncol(matrix_X)}else{posto = nrow(matrix_X)}
+  if(posto != qr(matrix_X)$rank){stop("A matriz tem posto incompleto.")}
   matrix_Y = as.matrix(dados[[Y]])
   coeficientes = solve(t(matrix_X)%*%matrix_X)  %*%t(matrix_X) %*% matrix_Y
   #criando dataframe
