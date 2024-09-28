@@ -2,7 +2,7 @@
 #' @title Predição de uma Regressão Linear
 #'
 #' @description
-#' A função tem como objetivo fazer uma prediçaõ a aprtir de um modelo de regressão linear feito através da função reg_lin
+#' A função tem como objetivo fazer uma predição a partir de um modelo de regressão linear feito através da função reg_lin
 #'
 #'
 #' @param modelo saída da funçaõ reg_lin
