@@ -50,8 +50,6 @@ graf_pvo = function(modelo, x_var, fixas = list(), dados) {
     labs(x = paste("Valores de", x_var), y = "Valores Preditos") +
     theme_bw() +
     ggtitle("Gráfico de Valores Observados vs Preditos")
-
- ggsave(grafico, file= "graficos/pred_vs_obs.pdf") 
   
   return(grafico)
 }
