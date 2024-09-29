@@ -25,7 +25,7 @@
 
 
 predicts = function(modelo, valores){
-  if(ncol(valores) != length(modelo$coeficientes) - 1){stop("Valores incompletos.")}
+  if(ncol(valores) != nrow(modelo$coeficientes) - 1){stop("Valores incompletos.")}
   resultado = list()
   for(i in 1:nrow(valores)){
     pred = modelo$coeficientes$coeficientes[1]
