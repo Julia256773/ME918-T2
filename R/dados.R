@@ -12,6 +12,9 @@
 #'
 #' @source Dados gerados através de simulações.
 #'
+#' @details
+#' Os dados seguem as suposições de regressão linear, sendo elas: linearidade entre as variáveis dependentes e independente; ausência de correlação entre as variáveis dependentes; resíduos apresentam distribuição normal.
+#'
 #' @examples
 #'  data(df)
 #'  df[4] #retorna a Variável Resposta
