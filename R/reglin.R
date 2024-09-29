@@ -21,7 +21,6 @@
 #' @export
 #'
 
-
 reg_lin = function(dados, Y, Xs){
 
   if (!is.character(Y) || !is.character(Xs[1])) { stop("Erro: A resposta ou preditoras não estão no formato de strings") }
@@ -82,7 +81,6 @@ reg_lin = function(dados, Y, Xs){
 
   # LISTA COM VALORES PREDITOS
   preditos = as.vector(matrix_X %*% as.matrix(coeficientes))
-
 
   # LISTA COM OS RESÍDUOS
   residuos = dados[[Y]]-preditos
