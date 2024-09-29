@@ -2,8 +2,7 @@
 #' @title Predição de uma Regressão Linear
 #'
 #' @description
-#' A função tem como objetivo fazer uma predição a partir de um modelo de regressão linear feito através da função reg_lin
-#'
+#' A função tem como objetivo fazer uma predição a partir de um modelo de regressão linear feito através de uma função de regressão linear
 #'
 #' @param modelo Saída de uma função de regressão linear
 #' @param valores Matriz em que cada linha correponde aos valores preditos desejados, e cada coluna a variável preditora na ordem em que o resultado é dado na saída do modelo.
