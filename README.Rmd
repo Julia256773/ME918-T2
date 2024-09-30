@@ -11,11 +11,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# pacote2
+# RegLin
 
-Este pacote tem como objetivo fornecer ferramentas para análise de regressão linear. 
+Este pacote tem como objetivo fornecer ferramentas para análise de regressão linear tais como estimação e significância de parâmetros, previsão e visualização da regressão modelada. O pacote também fornece um conjunto de dados que pode ser usado no uso das funções e o qual é dado como exemplo em suas documentações. 
 
-## Installation
+## Instalação
 
 Voce pode instalá-lo diretamente através do Github seguindo: [GitHub](https://github.com/) with:
 
@@ -24,27 +24,40 @@ Voce pode instalá-lo diretamente através do Github seguindo: [GitHub](https://
 devtools::install_github("Julia256773/ME918-T2")
 ```
 
-## Example
+## Exemplo
 
-This is a basic example which shows you how to solve a common problem:
+Este é um exemplo simples de como você pode usar as funções do pacote
 
 ```{r example}
 library(pacote2)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Você pode obter informações sobre os coeficientes de um modelo de regressão linear através da função reg_lin:
 
 ```{r cars}
-summary(cars)
+modelo = reg_lin(df, "y", c("x1", "x2", "x3"))
+
+modelo$coeficientes
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+Além disso, esta função também fornece os valores preditos do seu conjunto de dados para a regressão modelada e seus respectivos resíduos.
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r}
+plot(df$x1, modelo$residuos)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+O pacote também fornece formas de prever sobre o modelo a partir de valores fornecidos os parâmetros.
+
+```{r}
+valores = matrix(c(1, 5, 2,
+                   2, 6, 4,
+                   3, 7, 9), nrow = 3, byrow = TRUE)
+predicts(modelo, valores)
+```
+
+Por fim, também é possível visualizar o conjunto de dados tendo como referência um dos parâmetros dado os outros fixos. 
+
+```{r}
+graf_pvo(modelo, x_var = "x1", fixas = list(x2 = 0.5, x3 = 0.5), dados = df)
+```
+

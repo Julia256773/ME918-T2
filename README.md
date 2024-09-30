@@ -1,10 +1,13 @@
 
-# pacote2
+# RegLin
 
 Este pacote tem como objetivo fornecer ferramentas para análise de
-regressão linear.
+regressão linear tais como estimação e significância de parâmetros,
+previsão e visualização da regressão modelada. O pacote também fornece
+um conjunto de dados que pode ser usado no uso das funções e o qual é
+dado como exemplo em suas documentações.
 
-## Installation
+## Instalação
 
 Voce pode instalá-lo diretamente através do Github seguindo:
 [GitHub](https://github.com/) with:
@@ -14,35 +17,60 @@ Voce pode instalá-lo diretamente através do Github seguindo:
 devtools::install_github("Julia256773/ME918-T2")
 ```
 
-## Example
+## Exemplo
 
-This is a basic example which shows you how to solve a common problem:
+Este é um exemplo simples de como você pode usar as funções do pacote
 
 ``` r
 library(pacote2)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+Você pode obter informações sobre os coeficientes de um modelo de
+regressão linear através da função reg_lin:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+modelo = reg_lin(df, "y", c("x1", "x2", "x3"))
+
+modelo$coeficientes
+#>    betas      nomes coeficientes     p_valor     IC_inf      IC_sup
+#> 1 beta 0 intercepto   -0.2309475 0.001751615 -0.3733309 -0.08856416
+#> 2 beta 1         x1    2.0130277 0.000000000  1.8641478  2.16190766
+#> 3 beta 2         x2    2.2088157 0.000000000  2.0600880  2.35754336
+#> 4 beta 3         x3    2.2099940 0.000000000  2.0673860  2.35260204
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+Além disso, esta função também fornece os valores preditos do seu
+conjunto de dados para a regressão modelada e seus respectivos resíduos.
 
-You can also embed plots, for example:
+``` r
+plot(df$x1, modelo$residuos)
+```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+O pacote também fornece formas de prever sobre o modelo a partir de
+valores fornecidos os parâmetros.
+
+``` r
+valores = matrix(c(1, 5, 2,
+                   2, 6, 4,
+                   3, 7, 9), nrow = 3, byrow = TRUE)
+predicts(modelo, valores)
+#> [[1]]
+#> [1] 17.24615
+#> 
+#> [[2]]
+#> [1] 25.88798
+#> 
+#> [[3]]
+#> [1] 41.15979
+```
+
+Por fim, também é possível visualizar o conjunto de dados tendo como
+referência um dos parâmetros dado os outros fixos.
+
+``` r
+graf_pvo(modelo, x_var = "x1", fixas = list(x2 = 0.5, x3 = 0.5), dados = df)
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />

@@ -7,18 +7,18 @@
 predicts(modelo, valores)
 }
 \arguments{
-\item{modelo}{saída da funçaõ reg_lin}
+\item{modelo}{Saída de uma função de regressão linear}
 
-\item{valores}{matriz com uma linha para cada valor predito desejado e cada coluna o valor da variável preditora na ordem e que o resultado é dado na saída do modelo}
+\item{valores}{Matriz em que cada linha correponde aos valores preditos desejados, e cada coluna a variável preditora na ordem em que o resultado é dado na saída do modelo.}
 }
 \value{
 Retorna uma lista com os resultados dos valores preditos
 }
 \description{
-A função tem como objetivo fazer uma prediçaõ a aprtir de um modelo de regressão linear feito através da função reg_lin
+A função tem como objetivo fazer uma predição a partir de um modelo de regressão linear feito através de uma função de regressão linear
 }
 \details{
-É necessário que
+É necessário que os valores sejam numéricos e possuam pelo menos um valor de predição para cada variável pertencente ao modelo inserido na função.
 }
 \examples{
 modelo = reg_lin(pacote2::df, "y", c("x1", "x2"))

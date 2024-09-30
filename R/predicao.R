@@ -24,7 +24,7 @@
 
 
 predicts = function(modelo, valores){
-  if(ncol(valores) != nrow(modelo$coeficientes) - 1){stop("Valores incompletos.")}
+  if(ncol(valores) != nrow(modelo$coeficientes) - 1){stop("O número de parâmetros dado e no modelo são diferentes.")}
   resultado = list()
   for(i in 1:nrow(valores)){
     pred = modelo$coeficientes$coeficientes[1]

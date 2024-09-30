@@ -14,7 +14,7 @@ reg_lin(dados, Y, Xs)
 \item{Xs}{vetor de strings com os nomes das variáveis preditoras}
 }
 \value{
-Retorna uma lista com 3 objetos: um dataframe de nome "coeficientes" com os valores dos betas calculados, um vetor "preditos" com os valores preditos pelo modelo e um vetor "residuos" com os erros dos valores preditos.
+Retorna uma lista com 3 objetos: um dataframe de nome "coeficientes" com os valores dos betas calculados, assim como seus p-valores e os limites inferiores e superiores de seus intervalos de confiança; um vetor "preditos" com os valores preditos pelo modelo; um vetor "residuos" com os erros dos valores preditos.
 }
 \description{
 A função tem como objetivo aplicar o cálculo da regressão linear simples a um banco de dados
