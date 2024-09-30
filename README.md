@@ -19,7 +19,7 @@ devtools::install_github("Julia256773/ME918-T2")
 
 ## Exemplo
 
-Este é um exemplo simples de como você pode usar as funções do pacote
+Este é um exemplo simples de como você pode usar as funções do pacote:
 
 ``` r
 library(pacote2)
@@ -41,6 +41,7 @@ modelo$coeficientes
 
 Além disso, esta função também fornece os valores preditos do seu
 conjunto de dados para a regressão modelada e seus respectivos resíduos.
+Este pode ser apresentado por:
 
 ``` r
 plot(df$x1, modelo$residuos)
@@ -49,7 +50,7 @@ plot(df$x1, modelo$residuos)
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 O pacote também fornece formas de prever sobre o modelo a partir de
-valores fornecidos os parâmetros.
+valores fornecidos os parâmetros:
 
 ``` r
 valores = matrix(c(1, 5, 2,
@@ -66,8 +67,10 @@ predicts(modelo, valores)
 #> [1] 41.15979
 ```
 
-Por fim, também é possível visualizar o conjunto de dados tendo como
-referência um dos parâmetros dado os outros fixos.
+Por fim, também é possível visualizar o conjunto de dados e a sua reta
+de regressão linear, tendo como referência um dos parâmetros e mantendo
+os outros fixos os outros fixos. O gráfico do modelo de exemplo acima
+pode ser acessado por:
 
 ``` r
 graf_pvo(modelo, x_var = "x1", fixas = list(x2 = 0.5, x3 = 0.5), dados = df)

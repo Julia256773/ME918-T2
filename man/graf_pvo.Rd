@@ -4,16 +4,16 @@
 \alias{graf_pvo}
 \title{Gráfico de Valores Preditos vs Observados}
 \usage{
-graf_pvo(modelo, x_var, fixas = list(), dados)
+graf_pvo(modelo, x_var, dados, fixas = list())
 }
 \arguments{
 \item{modelo}{Saída da função reg_lin}
 
 \item{x_var}{Nome da variável correspondente ao eixo X}
 
-\item{fixas}{Lista das outras variáveis do modelo que assumem um valor fixo especificado}
-
 \item{dados}{Banco de dados utilizado na regressão linear feita previamente}
+
+\item{fixas}{Argumento opcional para caso o modelo tenha mais de um preditor: Lista das outras variáveis do modelo que assumem um valor fixo especificado}
 }
 \value{
 Retorna um gráfico de valores preditos vs valores observados, adicionado de uma reta de regressão calculada entre os dois vetores.

@@ -26,7 +26,7 @@ devtools::install_github("Julia256773/ME918-T2")
 
 ## Exemplo
 
-Este é um exemplo simples de como você pode usar as funções do pacote
+Este é um exemplo simples de como você pode usar as funções do pacote:
 
 ```{r example}
 library(pacote2)
@@ -40,13 +40,13 @@ modelo = reg_lin(df, "y", c("x1", "x2", "x3"))
 modelo$coeficientes
 ```
 
-Além disso, esta função também fornece os valores preditos do seu conjunto de dados para a regressão modelada e seus respectivos resíduos.
+Além disso, esta função também fornece os valores preditos do seu conjunto de dados para a regressão modelada e seus respectivos resíduos. Este pode ser apresentado por:
 
 ```{r}
 plot(df$x1, modelo$residuos)
 ```
 
-O pacote também fornece formas de prever sobre o modelo a partir de valores fornecidos os parâmetros.
+O pacote também fornece formas de prever sobre o modelo a partir de valores fornecidos os parâmetros:
 
 ```{r}
 valores = matrix(c(1, 5, 2,
@@ -55,7 +55,7 @@ valores = matrix(c(1, 5, 2,
 predicts(modelo, valores)
 ```
 
-Por fim, também é possível visualizar o conjunto de dados tendo como referência um dos parâmetros dado os outros fixos. 
+Por fim, também é possível visualizar o conjunto de dados e a sua reta de regressão linear, tendo como referência um dos parâmetros e mantendo os outros fixos os outros fixos. O gráfico do modelo de exemplo acima pode ser acessado por:
 
 ```{r}
 graf_pvo(modelo, x_var = "x1", fixas = list(x2 = 0.5, x3 = 0.5), dados = df)

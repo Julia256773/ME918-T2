@@ -3,10 +3,10 @@
 #' @description
 #' A função faz um gráfico cujos eixos correspondem aos valores observados da variável resposta de um banco de dados, e aos valores preditos através de uma regressão linear do mesma variável.
 #'
-#' @param modelo Saída da função reg_lin
-#' @param x_var Nome da variável correspondente ao eixo X
-#' @param fixas Lista das outras variáveis do modelo que assumem um valor fixo especificado
-#' @param dados Banco de dados utilizado na regressão linear feita previamente
+#' @param modelo Saída da função reg_lin.
+#' @param x_var Nome da variável correspondente ao eixo X.
+#' @param dados Banco de dados utilizado na regressão linear feita previamente.
+#' @param fixas Argumento opcional para caso o modelo tenha mais de um preditor: Lista das outras variáveis do modelo que assumem um valor fixo especificado.
 #'
 #' @details
 #' É necessário que x_var seja no formato Character e fixas seja uma lista na forma list(xi = valor, xj = valor).
@@ -24,11 +24,11 @@
 #' @export
 #'
 
-graf_pvo = function(modelo, x_var, fixas = list(), dados) {
+graf_pvo = function(modelo, x_var, dados, fixas = list()) {
 
   # Verifica se os preditos têm o mesmo tamanho que os dados
   if (length(modelo$preditos) != nrow(dados)) stop("O vetor de preditos deve ter o mesmo comprimento que os dados.")
-
+  if(length(fixas) != nrow(modelo$coeficientes) - 2){stop("O número de parâmetros fixos fornecidos e do modelo são diferentes.")}
   dados$predito = modelo$preditos # Adiciona os valores preditos no conjunto de dados pra fazer o gráfico
 
   # Cria uma base de dados para ser possível fazer a reta de regressão

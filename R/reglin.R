@@ -1,15 +1,15 @@
 #' @title Cálculo de Regressão Linear
 #'
 #' @description
-#' A função tem como objetivo aplicar o cálculo da regressão linear simples a um banco de dados
+#' A função tem como objetivo aplicar o cálculo da regressão linear simples a um banco de dados.
 #'
 #'
-#' @param dados Banco de dados a ser utilizado
-#' @param Y string com o nome da Variável resposta da forma como está no banco
-#' @param Xs vetor de strings com os nomes das variáveis preditoras
+#' @param dados Banco de dados a ser utilizado.
+#' @param Y string com o nome da Variável resposta da forma como está no banco.
+#' @param Xs vetor de strings com os nomes das variáveis preditoras.
 #'
 #' @details
-#' É necessário que tanto a variável resposta quanto as variáveis preditoras sejam numéricas e tenham o mesmo tamanho
+#' É necessário que tanto a variável resposta quanto as variáveis preditoras sejam numéricas e tenham o mesmo tamanho.
 #'
 #' @return Retorna uma lista com 3 objetos: um dataframe de nome "coeficientes" com os valores dos betas calculados, assim como seus p-valores e os limites inferiores e superiores de seus intervalos de confiança; um vetor "preditos" com os valores preditos pelo modelo; um vetor "residuos" com os erros dos valores preditos.
 #'
