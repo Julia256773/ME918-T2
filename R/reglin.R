@@ -11,7 +11,7 @@
 #' @details
 #' É necessário que tanto a variável resposta quanto as variáveis preditoras sejam numéricas e tenham o mesmo tamanho
 #'
-#' @return Retorna uma lista com 3 objetos: um dataframe de nome "coeficientes" com os valores dos betas calculados, um vetor "preditos" com os valores preditos pelo modelo e um vetor "residuos" com os erros dos valores preditos.
+#' @return Retorna uma lista com 3 objetos: um dataframe de nome "coeficientes" com os valores dos betas calculados, assim como seus p-valores e os limites inferiores e superiores de seus intervalos de confiança; um vetor "preditos" com os valores preditos pelo modelo; um vetor "residuos" com os erros dos valores preditos. 
 #'
 #' @examples
 #' reg_lin(df, "y", c("x1", "x2", "x3"))
@@ -20,7 +20,6 @@
 #'
 #' @export
 #'
-
 
 reg_lin = function(dados, Y, Xs){
 
@@ -40,16 +39,48 @@ reg_lin = function(dados, Y, Xs){
   if(posto != qr(matrix_X)$rank){stop("A matriz tem posto incompleto.")}
   matrix_Y = as.matrix(dados[[Y]])
   coeficientes = solve(t(matrix_X)%*%matrix_X)  %*%t(matrix_X) %*% matrix_Y
+  
   #criando dataframe
   betas = paste0("beta ", 0:(ncol(matrix_X)-1))
   nomes = append(c("intercepto"), Xs)
   coeficientes = as.vector(coeficientes)
   dataframe = data.frame(betas, nomes, coeficientes)
 
+  # Cálculos adicionais
+
+  # resíduos
+  residuos = matrix_Y - matrix_X %*% coeficientes
+  # Soma dos quadrados dos erros
+  SSE = sum(residuos^2)
+  # Graus de liberdade
+  n = nrow(matrix_X)
+  p = ncol(matrix_X)
+  gl = n - p
+  # Erro padrão do modelo
+  se = sqrt(SSE / gl)
+
+  # Erro padrão dos coeficientes
+  cov_matrix = solve(t(matrix_X) %*% matrix_X)
+  std_errors = se * sqrt(diag(cov_matrix))
+
+  # Estatística t e p-valores
+  t_values = coeficientes / std_errors
+  p_values = 2 * (1 - pt(abs(t_values), gl))
+
+  # Intervalos de confiança (IC) para cada beta
+  alpha = 0.05
+  qt_value = qt(1 - alpha / 2, gl)
+  lower_bound = coeficientes - qt_value * std_errors
+  upper_bound = coeficientes + qt_value * std_errors
+
+  # Adicionando na saída
+  p_valor =  as.vector(p_values)
+  IC_inf = as.vector(lower_bound)
+  IC_sup = as.vector(upper_bound)
+  dataframe = data.frame(dataframe, p_valor, IC_inf, IC_sup)
 
   # LISTA COM VALORES PREDITOS
   preditos = as.vector(matrix_X %*% as.matrix(coeficientes))
-
 
   # LISTA COM OS RESÍDUOS
   residuos = dados[[Y]]-preditos

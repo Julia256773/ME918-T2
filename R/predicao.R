@@ -2,14 +2,13 @@
 #' @title Predição de uma Regressão Linear
 #'
 #' @description
-#' A função tem como objetivo fazer uma prediçaõ a aprtir de um modelo de regressão linear feito através da função reg_lin
+#' A função tem como objetivo fazer uma predição a partir de um modelo de regressão linear feito através de uma função de regressão linear
 #'
-#'
-#' @param modelo saída da funçaõ reg_lin
-#' @param valores matriz com uma linha para cada valor predito desejado e cada coluna o valor da variável preditora na ordem e que o resultado é dado na saída do modelo
+#' @param modelo Saída de uma função de regressão linear
+#' @param valores Matriz em que cada linha correponde aos valores preditos desejados, e cada coluna a variável preditora na ordem em que o resultado é dado na saída do modelo.
 #'
 #' @details
-#' É necessário que
+#' É necessário que os valores sejam numéricos e possuam pelo menos um valor de predição para cada variável pertencente ao modelo inserido na função.
 #'
 #' @return Retorna uma lista com os resultados dos valores preditos
 #'
@@ -25,7 +24,7 @@
 
 
 predicts = function(modelo, valores){
-  if(ncol(valores) != length(modelo$coeficientes) - 1){stop("Valores incompletos.")}
+  if(ncol(valores) != nrow(modelo$coeficientes) - 1){stop("Valores incompletos.")}
   resultado = list()
   for(i in 1:nrow(valores)){
     pred = modelo$coeficientes$coeficientes[1]

@@ -32,6 +32,8 @@ test_that("resíduos nulos", {
   expect_equal(round(reg_lin(teste, "y", c("x1", "x2"))$preditos), y)
 })
 
+#o teste "resíduos nulos" apresentará 2 avisos pois, se os resíduos são nulos, não há meios para calcular os p-valores dos betas já que haverá uma divisão por 0. 
+
 test_that("posto incompleto", {
   x1 = c(1, 2, 3)
   x2 = c(2, 4, 6)
@@ -51,3 +53,21 @@ test_that("predição completa", {
   valores = matrix(c(1, 5, 2, 6, 3, 7, 4, 9, 8), nrow = 3, byrow = TRUE)
   expect_length(predicts(modelo, valores), ncol(valores))
 })
+
+test_that("comprimento diferente", {
+  modelo = reg_lin(df, "y", c("x1", "x2", "x3"))
+  x_var = "x1"
+  fixas = list(x2 = 0.5, x3 = 0.5)
+  dados = iris
+  expect_error(graf_pvo(modelo, x_var, fixas, dados))
+})
+
+test_that("gráfico criado", {
+  modelo = reg_lin(df, "y", c("x1", "x2", "x3"))
+  x_var = "x1"
+  fixas = list(x2 = 0.5, x3 = 0.5)
+  dados = df
+  expect_visible(graf_pvo(modelo, x_var, fixas, dados))
+})
+
+#o teste "gráfico criado" apresentará dois avisos por conta de argumentos de funções que entraram em desuso no pacote ggplot2, mas que são úteis para a função "graf_pvo" criada neste pacote.
