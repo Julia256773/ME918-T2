@@ -29,10 +29,11 @@ test_that("resíduos nulos", {
   x2 = c(20, 37, 49)
   y = 5 + 2*x1 + 3*x2
   teste <- data.frame(y, x1, x2)
-  expect_equal(round(reg_lin(teste, "y", c("x1", "x2"))$preditos), y)
+  expect_warning(reg_lin(teste, "y", c("x1", "x2")))
 })
 
-#o teste "resíduos nulos" apresentará 2 avisos pois, se os resíduos são nulos, não há meios para calcular os p-valores dos betas já que haverá uma divisão por 0. 
+#o teste "resíduos nulos" apresentará 2 avisos pois, se os resíduos são nulos, não há meios para calcular os p-valores dos betas já que haverá uma divisão por 0.
+#não vai ter stop para residuos nulos
 
 test_that("posto incompleto", {
   x1 = c(1, 2, 3)

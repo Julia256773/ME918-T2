@@ -11,7 +11,7 @@
 #' @details
 #' É necessário que tanto a variável resposta quanto as variáveis preditoras sejam numéricas e tenham o mesmo tamanho
 #'
-#' @return Retorna uma lista com 3 objetos: um dataframe de nome "coeficientes" com os valores dos betas calculados, assim como seus p-valores e os limites inferiores e superiores de seus intervalos de confiança; um vetor "preditos" com os valores preditos pelo modelo; um vetor "residuos" com os erros dos valores preditos. 
+#' @return Retorna uma lista com 3 objetos: um dataframe de nome "coeficientes" com os valores dos betas calculados, assim como seus p-valores e os limites inferiores e superiores de seus intervalos de confiança; um vetor "preditos" com os valores preditos pelo modelo; um vetor "residuos" com os erros dos valores preditos.
 #'
 #' @examples
 #' reg_lin(df, "y", c("x1", "x2", "x3"))
@@ -39,7 +39,7 @@ reg_lin = function(dados, Y, Xs){
   if(posto != qr(matrix_X)$rank){stop("A matriz tem posto incompleto.")}
   matrix_Y = as.matrix(dados[[Y]])
   coeficientes = solve(t(matrix_X)%*%matrix_X)  %*%t(matrix_X) %*% matrix_Y
-  
+
   #criando dataframe
   betas = paste0("beta ", 0:(ncol(matrix_X)-1))
   nomes = append(c("intercepto"), Xs)

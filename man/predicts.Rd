@@ -7,7 +7,7 @@
 predicts(modelo, valores)
 }
 \arguments{
-\item{modelo}{Saída de uma função de regressão linear}
+\item{modelo}{Saída da função reg_lin}
 
 \item{valores}{Matriz em que cada linha correponde aos valores preditos desejados, e cada coluna a variável preditora na ordem em que o resultado é dado na saída do modelo.}
 }

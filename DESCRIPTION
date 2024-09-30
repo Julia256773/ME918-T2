@@ -1,12 +1,17 @@
-Package: pacote2
-Title: What the Package Does (One Line, Title Case)
+Package: RegLin
+Title: Fornece materiais para trabalhar com Regressão Linear Simples e Múltipla
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+    person("Gabrielli", "Bedana", , "g251079@dac.unicamp.br", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Júlia", "Vidoto", , "j256773@dac.unicamp.br", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("Nicole", "Amaral", , "n204355@dac.unicamp.br", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("Nathan", "Elias", , "n236258@dac.unicamp.br", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: O pacote fornece funções para estimação de parâmetros de uma regressão linear, previsão de dados a partir de um modelo e visualização em um gráfico de pontos com ajuste da reta de regressão.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
@@ -15,4 +20,6 @@ Depends:
 LazyData: true
 Suggests: 
     testthat (>= 3.0.0)
+Imports: 
+    ggplot2
 Config/testthat/edition: 3

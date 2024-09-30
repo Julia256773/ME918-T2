@@ -3,7 +3,7 @@
 #' @description
 #' A função faz um gráfico cujos eixos correspondem aos valores observados da variável resposta de um banco de dados, e aos valores preditos através de uma regressão linear do mesma variável.
 #'
-#' @param modelo Saída de uma função de regressão linear
+#' @param modelo Saída da função reg_lin
 #' @param x_var Nome da variável correspondente ao eixo X
 #' @param fixas Lista das outras variáveis do modelo que assumem um valor fixo especificado
 #' @param dados Banco de dados utilizado na regressão linear feita previamente
@@ -14,9 +14,10 @@
 #' @return Retorna um gráfico de valores preditos vs valores observados, adicionado de uma reta de regressão calculada entre os dois vetores.
 #'
 #' @examples
+#' modelo = reg_lin(df, "y", c("x1", "x2", "x3"))
 #' graf_pvo(modelo, x_var = "x1", fixas = list(x2 = 0.5, x3 = 0.5), dados = df)
 #' graf_pvo(modelo, "x2", list(x1 = 0.7, x3 = 0.1), df)
-#' graf_pvo(saida_regressao_linear, "x3", fixas = list(x1 = 0.5, x2 = 0.9), df)
+#' graf_pvo(modelo, "x3", fixas = list(x1 = 0.5, x2 = 0.9), df)
 #'
 #' @import ggplot2
 #'
@@ -50,6 +51,6 @@ graf_pvo = function(modelo, x_var, fixas = list(), dados) {
     labs(x = paste("Valores de", x_var), y = "Valores Preditos") +
     theme_bw() +
     ggtitle("Gráfico de Valores Observados vs Preditos")
-  
+
   return(grafico)
 }

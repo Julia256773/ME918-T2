@@ -7,7 +7,7 @@
 graf_pvo(modelo, x_var, fixas = list(), dados)
 }
 \arguments{
-\item{modelo}{Saída de uma função de regressão linear}
+\item{modelo}{Saída da função reg_lin}
 
 \item{x_var}{Nome da variável correspondente ao eixo X}
 
@@ -25,8 +25,9 @@ A função faz um gráfico cujos eixos correspondem aos valores observados da va
 É necessário que x_var seja no formato Character e fixas seja uma lista na forma list(xi = valor, xj = valor).
 }
 \examples{
+modelo = reg_lin(df, "y", c("x1", "x2", "x3"))
 graf_pvo(modelo, x_var = "x1", fixas = list(x2 = 0.5, x3 = 0.5), dados = df)
 graf_pvo(modelo, "x2", list(x1 = 0.7, x3 = 0.1), df)
-graf_pvo(saida_regressao_linear, "x3", fixas = list(x1 = 0.5, x2 = 0.9), df)
+graf_pvo(modelo, "x3", fixas = list(x1 = 0.5, x2 = 0.9), df)
 
 }
